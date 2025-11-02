@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import { Text, TouchableOpacity, View } from "react-native";
+import { quantitySelectorStyle as styles } from "../src/styles/quantitySelector";
 type Props = { value: number; onDec: () => void; onInc: () => void };
 
 export default function QuantitySelector({ value, onDec, onInc }: Props) {
@@ -12,12 +12,4 @@ export default function QuantitySelector({ value, onDec, onInc }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  row: { flexDirection: "row", alignItems: "center", gap: 8 },
-  btn: {
-    width: 36, height: 36, borderRadius: 18, borderWidth: 1, borderColor: "#d9d9d9",
-    alignItems: "center", justifyContent: "center",
-  },
-  btnTxt: { fontSize: 22, fontWeight: "700" },
-  qty: { minWidth: 24, textAlign: "center", fontSize: 16, fontWeight: "700" },
-});
+

@@ -1,5 +1,7 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Trash2 } from "lucide-react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { CartItem, brl } from "../src/context/CartContext";
+import { cardItemStyle as styles } from "../src/styles/cardItem";
 import QuantitySelector from "./QuantitySelector";
 
 type Props = {
@@ -12,28 +14,37 @@ type Props = {
 export default function CartItemRow({ item, onInc, onDec, onRemove }: Props) {
   const subtotal = item.product.price * item.qty;
   return (
-    <View style={styles.row}>
-      <Image source={{ uri: item.product.image }} style={styles.image} resizeMode="contain"/>
+   <View style={styles.row}>
+      <Image
+        source={{ uri: item.product.image }}
+        style={styles.image}
+        resizeMode="contain"
+      />
+
       <View style={styles.center}>
-        <Text numberOfLines={2} style={styles.name}>{item.product.name}</Text>
-        <Text style={styles.price}>{brl(item.product.price)}</Text>
-        <QuantitySelector value={item.qty} onDec={onDec} onInc={onInc} />
+        {/* Nome do produto */}
+        <Text numberOfLines={2} style={styles.name}>
+          {item.product.name}
+        </Text>
+
+        {/* Linha inferior: preço unitário azul + seletor */}
+        <View style={styles.bottomRow}>
+          <QuantitySelector value={item.qty} onDec={onDec} onInc={onInc} />
+          <Text style={styles.price}>{brl(item.product.price)}</Text>
+        </View>
       </View>
+
       <View style={styles.right}>
         <Text style={styles.sub}>{brl(subtotal)}</Text>
-        <TouchableOpacity onPress={onRemove}><Text style={styles.remove}>Remover</Text></TouchableOpacity>
+        <TouchableOpacity
+          onPress={onRemove}
+          style={styles.trashBtn}
+          hitSlop={8}
+        >
+          <Trash2 size={20} color="#0b2b6b" strokeWidth={2.2} />
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  row: { flexDirection: "row", gap: 12, padding: 12, backgroundColor: "#fff", borderRadius: 12, marginBottom: 12, elevation: 1 },
-  image: { width: 72, height: 72, borderRadius: 8, backgroundColor: "#f2f2f2" },
-  center: { flex: 1, gap: 6 },
-  name: { fontWeight: "600" },
-  price: { fontWeight: "700" },
-  right: { alignItems: "flex-end", justifyContent: "space-between" },
-  sub: { fontWeight: "700" },
-  remove: { color: "#c1272d", marginTop: 8 },
-});

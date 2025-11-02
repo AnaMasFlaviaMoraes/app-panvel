@@ -14,6 +14,7 @@ type CartContextType = {
   remove: (id: string) => void;
   total: number;
   count: number; // total de unidades
+  clear: () => void;  
 };
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -58,7 +59,11 @@ export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     [items]
   );
 
-  const value: CartContextType = { items, add, inc, dec, remove, total, count };
+   const clear = () => {
+    setItems([]);
+  };
+
+  const value: CartContextType = { items, add, inc, dec, remove, total, count, clear };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 

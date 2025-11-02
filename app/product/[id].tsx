@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
   box: { padding: 16, gap: 12 },
   name: { fontSize: 18, fontWeight: "700", color: "#1b1b1b" },
 
-  priceRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  price: { fontSize: 22, fontWeight: "800", color: "#0b2b6b" },
-  badge: { backgroundColor: "#ffe9d6", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6 },
+  priceRow: { flexDirection: "row", alignItems: "center", gap: 8, justifyContent: "center" },
+  price: { fontSize: 22, fontWeight: "800", color: "#0b2b6b", textAlign: "center", alignItems: "center" , justifyContent: "center"},
+  badge: { backgroundColor: "#ffe9d6", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, textAlign:"center" },
   badgeTxt: { color: "#f17600", fontWeight: "700" },
 
   desc: { color: "#555", lineHeight: 20 },
