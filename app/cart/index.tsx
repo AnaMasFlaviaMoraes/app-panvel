@@ -58,7 +58,7 @@ export default function CartScreen() {
     </View>
     { items.length > 0 ? (
       <View style={[styles.footerBar, { paddingBottom: 4 }]}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
           <Text style={styles.footerLabel}>Total</Text>
           <Text style={styles.footerValue}>
             {total.toLocaleString("pt-BR", {

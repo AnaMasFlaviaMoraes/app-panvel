@@ -22,13 +22,20 @@ export default function ProductDetailsScreen() {
     setToastOpen(true);
   };
 
+  const close = () => {
+    setToastOpen(false);
+    router.push("/products");
+  }
+
   return (
     <>
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.box}>
+      <Text style={styles.name}>{product.name}</Text>
       <Image source={{ uri: product.image }} style={styles.image} resizeMode="contain" />
 
-      <View style={styles.box}>
-        <Text style={styles.name}>{product.name}</Text>
+      
+        
 
         <View style={styles.priceRow}>
           <Text style={styles.price}>{brl(product.price)}</Text>
@@ -55,7 +62,7 @@ export default function ProductDetailsScreen() {
         visible={toastOpen}
         product={product}
         qty={qty}
-        onClose={() => setToastOpen(false)}
+        onClose={close}
         onGoToCart={() => {
           setToastOpen(false);
           router.push("/cart");

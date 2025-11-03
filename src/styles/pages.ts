@@ -49,14 +49,13 @@ export const cartStyles = StyleSheet.create({
     backgroundColor: "#0b2b6b",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
     paddingHorizontal: 16,
     zIndex: 999,
     elevation: 10,
   },
   footerLabel: {
     color: "#d7e0ff",
-    fontSize: 12,
+    fontSize: 20,
   },
   footerValue: {
     color: "#fff",
@@ -64,13 +63,13 @@ export const cartStyles = StyleSheet.create({
     fontWeight: "800",
   },
   footerBtn: {
-    backgroundColor: "#fff",
+    backgroundColor: "#0b2b6b",
     paddingHorizontal: 18,
     paddingVertical: 8,
     borderRadius: 8,
   },
   footerBtnTxt: {
-    color: "#0b2b6b",
+    color: "#fff",
     fontWeight: "700",
     fontSize: 15,
   },
