@@ -19,8 +19,8 @@ type Props = {
   qty?: number;
   onClose: () => void;
   onGoToCart: () => void;
-  cartTotal: number;             // total atual do carrinho
-  freeShippingThreshold?: number; // ex: 140.00
+  cartTotal: number;             
+  freeShippingThreshold?: number; 
 };
 
 export default function AddToCartToast({
@@ -32,7 +32,7 @@ export default function AddToCartToast({
   cartTotal,
   freeShippingThreshold = 140,
 }: Props) {
-  const slideY = useRef(new Animated.Value(300)).current; // começa fora da tela
+  const slideY = useRef(new Animated.Value(300)).current; 
 
   useEffect(() => {
     Animated.timing(slideY, {
@@ -50,12 +50,8 @@ export default function AddToCartToast({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      {/* backdrop */}
       <Pressable style={styles.backdrop} onPress={onClose} />
-
-      {/* sheet */}
       <Animated.View style={[styles.sheet, { transform: [{ translateY: slideY }] }]}>
-        {/* header */}
         <View style={styles.header}>
           <View style={styles.row}>
             <Image source={{ uri: product.image }} style={styles.thumb} resizeMode="contain" />
@@ -70,8 +66,6 @@ export default function AddToCartToast({
             <Text style={{ fontSize: 18, color: COLORS.textGray }}>✕</Text>
           </TouchableOpacity>
         </View>
-
-        {/* frete grátis */}
         <View style={{ marginTop: 10 }}>
           {remaining > 0 ? (
             <Text style={styles.freeText}>
@@ -83,7 +77,7 @@ export default function AddToCartToast({
             </Text>
           ) : (
             <Text style={[styles.freeText, { color: "#10a94a", fontWeight: "700" }]}>
-              Você alcançou o frete grátis! 🎉
+              Você alcançou o frete grátis! 
             </Text>
           )}
 
@@ -91,8 +85,6 @@ export default function AddToCartToast({
             <View style={[styles.progressFill, { width: `${progress * 100}%` }]} />
           </View>
         </View>
-
-        {/* ações */}
         <View style={styles.actions}>
           <TouchableOpacity style={globalStyles.buttonPrimary} onPress={onClose} activeOpacity={0.9}>
             <Text style={globalStyles.buttonPrimaryText}>Continuar comprando</Text>

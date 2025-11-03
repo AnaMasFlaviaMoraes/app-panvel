@@ -13,7 +13,7 @@ type CartContextType = {
   dec: (id: string) => void;
   remove: (id: string) => void;
   total: number;
-  count: number; // total de unidades
+  count: number; 
   clear: () => void;  
 };
 

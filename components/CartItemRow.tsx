@@ -22,12 +22,9 @@ export default function CartItemRow({ item, onInc, onDec, onRemove }: Props) {
       />
 
       <View style={styles.center}>
-        {/* Nome do produto */}
         <Text numberOfLines={2} style={styles.name}>
           {item.product.name}
         </Text>
-
-        {/* Linha inferior: preço unitário azul + seletor */}
         <View style={styles.bottomRow}>
           <QuantitySelector value={item.qty} onDec={onDec} onInc={onInc} />
           <Text style={styles.price}>{brl(item.product.price)}</Text>

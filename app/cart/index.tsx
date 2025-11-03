@@ -1,16 +1,25 @@
 import { useRouter } from "expo-router";
 import { Trash2 } from "lucide-react-native";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import CartItemRow from "../../components/CartItemRow";
 import { useCart } from "../../src/context/CartContext";
+import { cartStyles as styles } from "../../src/styles/pages";
+
+const FOOTER_HEIGHT = 64;
 
 export default function CartScreen() {
   const { items, inc, dec, remove, clear, total } = useCart();
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      {/* header apenas com título */}
+    <SafeAreaView style={styles.container}>
+    <View style={styles.content}>
       <View style={styles.header}>
         <Text style={styles.title}>Minha cesta</Text>
       </View>
@@ -29,7 +38,7 @@ export default function CartScreen() {
         contentContainerStyle={{
           paddingHorizontal: 16,
           paddingTop: 4,
-          paddingBottom: 500, // 👈 espaço para o footer aparecer
+          paddingBottom: FOOTER_HEIGHT + 24,
           gap: 12,
         }}
         ListEmptyComponent={
@@ -37,7 +46,6 @@ export default function CartScreen() {
             Sua cesta está vazia.
           </Text>
         }
-        // ⬇️ footer: aparece só se tiver itens
         ListFooterComponent={
           items.length > 0 ? (
             <TouchableOpacity style={styles.clearBtn} onPress={clear}>
@@ -47,9 +55,9 @@ export default function CartScreen() {
           ) : null
         }
       />
-
-      {/* tarja azul fixa */}
-      <View style={styles.footerBar}>
+    </View>
+    { items.length > 0 ? (
+      <View style={[styles.footerBar, { paddingBottom: 4 }]}>
         <View style={{ flex: 1 }}>
           <Text style={styles.footerLabel}>Total</Text>
           <Text style={styles.footerValue}>
@@ -68,63 +76,9 @@ export default function CartScreen() {
           <Text style={styles.footerBtnTxt}>Entrega →</Text>
         </TouchableOpacity>
       </View>
-    </View>
+     ) : null }
+        
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f6f7f9" },
-
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  title: { fontSize: 20, fontWeight: "700", color: "#1b1b1b" },
-
-  clearBtn: {
-    marginTop: 4,
-    marginBottom: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    justifyContent: "center",
-  },
-  clearTxt: {
-    color: "#c1272d",
-    fontWeight: "600",
-  },
-
-  footerBar: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#0b2b6b",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    gap: 16,
-  },
-  footerLabel: {
-    color: "#c9d6ff",
-    fontSize: 12,
-  },
-  footerValue: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "800",
-  },
-  footerBtn: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 18,
-    paddingVertical: 8,
-    borderRadius: 8,
-  },
-  footerBtnTxt: {
-    color: "#0b2b6b",
-    fontWeight: "700",
-    fontSize: 15,
-  },
-});

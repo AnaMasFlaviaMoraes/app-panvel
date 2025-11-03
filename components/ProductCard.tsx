@@ -8,13 +8,11 @@ import { productCardStyles as styles } from "../src/styles/productCard";
 type Props = {
   product: Product;
   variant?: "grid" | "list";
-  onAddToCart?: (product: Product) => void;   // ⬅️ NOVO
+  onAddToCart?: (product: Product) => void;  
 };
 
 export default function ProductCard({ product, variant = "grid", onAddToCart }: Props) {
   const { add } = useCart();
-
-  // desconto → preço riscado
   const pct =
     product.badge && product.badge.includes("%")
       ? Math.max(
@@ -33,8 +31,8 @@ export default function ProductCard({ product, variant = "grid", onAddToCart }: 
       .toUpperCase();
 
   const handleAdd = () => {
-    add(product, 1);             // adiciona de verdade no carrinho
-    onAddToCart?.(product);      // ⬅️ dispara o toast lá na lista
+    add(product, 1);            
+    onAddToCart?.(product);      
   };
 
   return (
@@ -44,8 +42,6 @@ export default function ProductCard({ product, variant = "grid", onAddToCart }: 
           <Image source={{ uri: product.image }} style={styles.image} resizeMode="contain" />
         </TouchableOpacity>
       </Link>
-
-      {/* ícone da cestinha */}
       <TouchableOpacity onPress={handleAdd} style={styles.fab} activeOpacity={0.9}>
         <ShoppingCart color="#0b2b6b" size={18} />
       </TouchableOpacity>

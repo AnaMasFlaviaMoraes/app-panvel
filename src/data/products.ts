@@ -1,10 +1,10 @@
 export type Product = {
   id: string;
   name: string;
-  price: number;          // em reais
+  price: number;          
   image: string;
   description: string;
-  badge?: string;         // ex.: "-30%"
+  badge?: string;         
   brand?: string;
 };
 
